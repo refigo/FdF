@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/19 13:14:00 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/19 15:53:39 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include <errno.h>
 # include "libft.h"
 # include "get_next_line.h"
 # include "mlx.h"
@@ -38,7 +39,7 @@
  */
 typedef struct	s_map
 {
-	char	*name;
+	char	*file;
 	int		*arr_z;
 	int		*arr_color;
 	int		width;

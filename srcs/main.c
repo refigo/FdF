@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
+/*   Updated: 2022/01/19 15:31:40 by mgo              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	exit_str_code(char *str, int code)
@@ -5,9 +17,10 @@ void	exit_str_code(char *str, int code)
 	if (str)
 		ft_putstr_fd(str, 1);
 	exit(code);
+	// todo: using errno
 }
 
-int	get_map(t_map *map)
+int	get_map_content(t_map *map)
 {
 	char	*buf_line;
 	char	**buf_split;
@@ -18,7 +31,7 @@ int	get_map(t_map *map)
 
 	fd_map = open(map->name, O_RDONLY);
 	//todo: exception
-	while (1 == get_next_line(fd_map, &buf_line))
+	while (get_next_line(fd_map, &buf_line) == 1)
 	{
 		buf_split = ft_split(buf_line, ' ');
 		//todo: exception
@@ -43,33 +56,37 @@ int	get_map(t_map *map)
 	return (0);
 }
 
-int	parse_map(char *arg_map)
+void	parse_map(char *file)
 {
 	t_map	*map;
 
-	if (ft_strnstr(arg_map, ".fdf", ft_strlen(arg_map)))
+	// get file name
+	/*
+	if (ft_strnstr(file, ".fdf", ft_strlen(file)))
 		printf("yes\n");
 	else
 		printf("no\n");
-	printf("map: [%s]\n", arg_map);
-	//map = ft_calloc(1, sizeof(t_map));
-	//todo: exception
-	//map->name = arg_map;
-	//get_map(map);
-	
-	return (1);
+	printf("map: [%s]\n", file);
+	*/
+	map = ft_calloc(1, sizeof(t_map));
+	if (!map)
+		exit_str_code("malloc failed!\n", 1);
+	map->file = file;
+	get_content_content(map);
+	//set_map_array(map);
 }
 
 int	main(int argc, char **argv)
 {
 	t_fdf	fdf;
+
 	if (argc != 2)
 		exit_str_code("argument number is wrong!\n", 1);
 	parse_map(argv[1]);
 	//set_mlx();
 	//draw_fdf();
-	// todo: handling minilibX
 	//handle_fdf();
 	//mlx_loop(p_mlx);
 	return (0);
 }
+

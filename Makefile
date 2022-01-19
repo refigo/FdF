@@ -6,7 +6,7 @@
 #    By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 13:30:25 by mgo               #+#    #+#              #
-#    Updated: 2022/01/19 13:58:57 by mgo              ###   ########.fr        #
+#    Updated: 2022/01/19 15:07:08 by mgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,10 @@ $(NAME)	:	$(OBJ) libft libmlx
 
 $(OBJ_PATH)%.o	:	$(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) $(CFLAGS) $(INC_LINK) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC_LINK) -c $< -o $@
 
 libft	:
-	make -C ./lib/libft all
+	@make -C ./lib/libft all
 
 libmlx	:
 	make -C ./lib/minilibx_macos all
@@ -44,12 +44,12 @@ libmlx	:
 all		:	$(NAME)
 
 clean	:
-	make -C ./lib/libft clean
-	make -C ./lib/minilibx_macos clean
+	@make -C ./lib/libft clean
+	@make -C ./lib/minilibx_macos clean
 	$(RM) $(OBJ_PATH)
 
 fclean	: clean
-	make -C ./lib/libft fclean
+	@make -C ./lib/libft fclean
 	$(RM) $(NAME)
 
 re	:	fclean all
