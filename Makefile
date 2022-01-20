@@ -6,14 +6,14 @@
 #    By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 13:30:25 by mgo               #+#    #+#              #
-#    Updated: 2022/01/19 15:07:08 by mgo              ###   ########.fr        #
+#    Updated: 2022/01/20 16:12:15 by mgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fdf
 CC			=	gcc
 #CFLAGS		=	-Wall -Wextra -Werror
-#CDEBUG		=	-fsantinize=address -g
+CDEBUG		=	-fsanitize=address -g
 RM			=	rm -rf
 
 INC_LINK	=	-I./includes/
@@ -21,7 +21,8 @@ LIBFT		=	-L./lib/libft -lft
 LIBMLX		=	-L./lib/minilibx_macos -lmlx -framework OpenGL -framework AppKit
 
 SRC_PATH	=	./srcs/
-SRC_LIST	=	main.c
+SRC_LIST	=	main.c \
+				test_fdf.c
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_LIST))
 
 OBJ_PATH	=	./objs/
@@ -29,14 +30,14 @@ OBJ_LIST	=	$(SRC_LIST:.c=.o)
 OBJ			=	$(addprefix $(OBJ_PATH), $(OBJ_LIST))
 
 $(NAME)	:	$(OBJ) libft libmlx
-	$(CC) $(OBJ) $(INC_LINK) $(LIBFT) $(LIBMLX) -o $(NAME)
+	$(CC) $(CDEBUG) $(OBJ) $(INC_LINK) $(LIBFT) $(LIBMLX) -o $(NAME)
 
 $(OBJ_PATH)%.o	:	$(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) $(INC_LINK) -c $< -o $@
+	@$(CC) $(CDEBUG) $(CFLAGS) $(INC_LINK) -c $< -o $@
 
 libft	:
-	@make -C ./lib/libft all
+	make -C ./lib/libft all
 
 libmlx	:
 	make -C ./lib/minilibx_macos all
@@ -53,6 +54,10 @@ fclean	: clean
 	$(RM) $(NAME)
 
 re	:	fclean all
+
+
+test	:
+	$(CC) $(OBJ) $(INC_LINK) $(LIBFT) $(LIBMLX) -o $(NAME)
 
 test_mlx	:
 	$(CC) toy_mlx.c -I./includes/ -L./lib/minilibx_macos -lmlx -framework OpenGL -framework AppKit

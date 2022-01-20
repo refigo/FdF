@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/19 15:53:39 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/20 18:49:05 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include "mlx.h"
+
+# include "test_fdf.h"
 
 /* 
  *	open, read, write, close
