@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/20 18:49:05 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/23 14:39:37 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <fcntl.h>
 # include <math.h>
 # include <errno.h>
+# include <stdbool.h>
 # include "libft.h"
 # include "get_next_line.h"
 # include "mlx.h"
 
-# include "test_fdf.h"
 
 /* 
  *	open, read, write, close
@@ -33,6 +33,7 @@
  *	math library
  *	miniLibX library
  */
+
 
 /*
  * value == altitude -> z
@@ -50,8 +51,8 @@ typedef struct	s_map
 
 typedef struct	s_point
 {
-	int	z;
-	int	color;
+	int		z;
+	int		color;
 }				t_point;
 
 typedef struct	s_fdf
@@ -62,5 +63,7 @@ typedef struct	s_fdf
 	t_map	*map;
 
 }				t_fdf;
+
+# include "test_fdf.h"
 
 #endif

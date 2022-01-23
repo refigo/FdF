@@ -1,3 +1,5 @@
 #include <stdio.h>
 
-void	test_tmp_split(char **buf_split);
+void	test_line_splitted(char **line_splitted);
+void	test_point_splitted(t_point *point);
+
