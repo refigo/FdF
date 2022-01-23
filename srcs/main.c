@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/23 14:42:44 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/23 17:07:29 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	is_whitespace(char c)
 	return (0);
 }
 
-int	transfer_hex_to_denary(int *num, char hex)
+bool	transfer_hex_to_denary(int *num, char hex)
 {
 	const char	*hexa_digits = "0123456789ABCDEF";
 	char		upper_hex;
@@ -57,73 +57,101 @@ int	transfer_hex_to_denary(int *num, char hex)
 	return (false);
 }
 
-int	atoi_hexa_color(char *str)
+int	atoi_hexa_color(char *hexa_color)
 {
 	int	ret_num;
 	int	i;
 
 	ret_num = 0;
-	if (!ft_strnstr(str, "0x", 2))
+	if (!ft_strnstr(hexa_color, "0x", 2))
 		return (-1);
 	i = 1;
-	while (str[++i])
-		if (!transfer_hex_to_denary(&ret_num, str[i]))
+	while (hexa_color[++i])
+		if (!transfer_hex_to_denary(&ret_num, hexa_color[i]))
 			return (-1);
 	return (ret_num);
 }
 
-int	get_map_content(t_map *map)
+bool	add_point_to_stack(t_list **stack, t_point *map_point)
 {
+	t_list	*new;
+
+	new = ft_lstnew(map_point);
+	if (!new)
+		return (false);
+	ft_lstadd_front(stack, new);
+	return (true);
+}
+
+void	parse_map_line(t_map *map, char **tmp_line_splitted, t_list **stack)
+{
+	t_point	*map_point;
+	char	**tmp_point_splitted;
+	int		i;
+
+	i = -1;
+	while (tmp_line_splitted[++i])
+	{
+		tmp_point_splitted = ft_split(tmp_line_splitted[i], ',');
+		if (!tmp_point_splitted)
+			exit_perror(1);
+		map_point = calloc(1, sizeof(t_point));
+		if (!map_point)
+			exit_perror(1);
+		map_point->z = ft_atoi(tmp_point_splitted[0]);
+		if (tmp_point_splitted[1])
+			map_point->color = atoi_hexa_color(tmp_point_splitted[1]);
+		else
+			map_point->color = -1;
+
+		// test point splitted
+		/*
+		if (tmp_point_splitted[1])
+			test_point_splitted(map_point);
+		*/
+
+		// put into stack or queue
+		add_point_to_stack(stack, map_point);
+
+		mgo_free_2ptr(tmp_point_splitted);
+	}
+	if (!(map->width))
+		map->width = i;
+}
+
+void	get_map_content(t_map *map)
+{
+	int		fd_map;
 	char	*tmp_line;
 	char	**tmp_line_splitted;
-	char	**tmp_point_splitted;
-	int		fd_map;
-	int		i;
-	t_point	*point;
+	t_list	*stack;
 
+	stack = NULL;
 	fd_map = open(map->file, O_RDONLY);
-	if (fd_map == -1)	// OPEN_MAX and minus
+	if (fd_map == -1)	// todo?: OPEN_MAX and minus
 		exit_perror(1);
 	tmp_line = NULL;
-	get_next_line(fd_map, &tmp_line);
-	while (tmp_line)
+	while (get_next_line(fd_map, &tmp_line) != -1 && tmp_line)
 	{
 		tmp_line_splitted = ft_split(tmp_line, ' ');
 		if (!tmp_line_splitted)
 			exit_perror(1);
 
-		test_line_splitted(tmp_line_splitted);	// test tmp split
+		// test tmp line splitted
+		//test_line_splitted(tmp_line_splitted);
 
-		i = -1;
-		while (tmp_line_splitted[++i])
-		{
-			tmp_point_splitted = ft_split(tmp_line_splitted[i], ',');
-			//todo: exception
-			point = calloc(1, sizeof(t_point));
-			point->z = ft_atoi(tmp_point_splitted[0]);
-			if (tmp_point_splitted[1])
-				point->color = atoi_hexa_color(tmp_point_splitted[1]);
-			else
-				point->color = -1;
-			// test point splitted
-			if (tmp_point_splitted[1])
-				test_point_splitted(point);
-
-			// put into stack or queue
-			//ft_lstnew(point);
-			mgo_free_2ptr(tmp_point_splitted);
-		}
+		parse_map_line(map, tmp_line_splitted, &stack);
 		mgo_free_2ptr(tmp_line_splitted);
-		if (!(map->width))
-			map->width = i;
-		(map->height)++;
-
 		free(tmp_line);
 		tmp_line = NULL; // because of abort... but why???
-		get_next_line(fd_map, &tmp_line);
+		(map->height)++;
 	}
 	close(fd_map);
-	return (0);
+
+	// test_stack
+	test_stack(stack);
+
+	map->stack = stack;
 }
 
 void	parse_map(char *file)
@@ -136,6 +164,9 @@ void	parse_map(char *file)
 	map->file = file;
 	get_map_content(map);
 	//set_map_array(map);
+
+	// test map
+	test_map(map);
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/23 14:39:37 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/23 16:24:37 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include "get_next_line.h"
 # include "mlx.h"
 
-
 /* 
  *	open, read, write, close
  *	malloc, free
@@ -34,7 +33,6 @@
  *	miniLibX library
  */
 
-
 /*
  * value == altitude -> z
  * horizontal position == axis -> width
@@ -43,6 +41,7 @@
 typedef struct	s_map
 {
 	char	*file;
+	t_list	*stack;
 	int		*arr_z;
 	int		*arr_color;
 	int		width;

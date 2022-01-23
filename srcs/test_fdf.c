@@ -1,5 +1,6 @@
 #include "fdf.h"
 
+// test each line content
 void	test_line_splitted(char **line_splitted)
 {
 	int	i;
@@ -15,6 +16,7 @@ void	test_line_splitted(char **line_splitted)
 	printf("\nDone --- test_line_splitted\n");
 }
 
+// test each point content 
 void	test_point_splitted(t_point *point)
 {
 	printf("Start --- test_point_splitted\n");
@@ -27,4 +29,37 @@ void	test_point_splitted(t_point *point)
 }
 
 // test stack
+static void	print_stack(void *content)
+{
+	t_point	*point;
+
+	point = (t_point *)content;
+	if (point->color != -1)
+	{
+		printf("point->z: [%d]\n", point->z);
+		printf("point->color: [%x]\n", point->color);
+	}
+}
+
+void	test_stack(t_list *stack)
+{
+	printf("Start --- test_stack\n");
+
+	//printf("stack list size: [%d]\n", ft_lstsize(stack));
+	ft_lstiter(stack, print_stack);
+
+	printf("Done --- test_stack\n");
+}
+
+// test map
+void	test_map(t_map *map)
+{
+	printf("Start --- test_map\n");
+
+	printf("map->stack list size: [%d]\n", ft_lstsize(map->stack));
+	printf("map->width: [%d]\n", map->width);
+	printf("map->height: [%d]\n", map->height);
+
+	printf("Done --- test_map\n");
+}
 
