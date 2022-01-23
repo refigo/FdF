@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/23 17:07:29 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/23 17:28:52 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,7 @@ void	parse_map_line(t_map *map, char **tmp_line_splitted, t_list **stack)
 			map_point->color = atoi_hexa_color(tmp_point_splitted[1]);
 		else
 			map_point->color = -1;
-
-		// test point splitted
-		/*
-		if (tmp_point_splitted[1])
-			test_point_splitted(map_point);
-		*/
-
-		// put into stack or queue
 		add_point_to_stack(stack, map_point);
-
 		mgo_free_2ptr(tmp_point_splitted);
 	}
 	if (!(map->width))
@@ -136,10 +127,6 @@ void	get_map_content(t_map *map)
 		tmp_line_splitted = ft_split(tmp_line, ' ');
 		if (!tmp_line_splitted)
 			exit_perror(1);
-
-		// test tmp line splitted
-		//test_line_splitted(tmp_line_splitted);
-
 		parse_map_line(map, tmp_line_splitted, &stack);
 		mgo_free_2ptr(tmp_line_splitted);
 		free(tmp_line);
@@ -147,10 +134,6 @@ void	get_map_content(t_map *map)
 		(map->height)++;
 	}
 	close(fd_map);
-
-	// test_stack
-	test_stack(stack);
-
 	map->stack = stack;
 }
 

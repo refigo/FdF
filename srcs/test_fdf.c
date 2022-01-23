@@ -56,6 +56,7 @@ void	test_map(t_map *map)
 {
 	printf("Start --- test_map\n");
 
+	test_stack(map->stack);
 	printf("map->stack list size: [%d]\n", ft_lstsize(map->stack));
 	printf("map->width: [%d]\n", map->width);
 	printf("map->height: [%d]\n", map->height);
