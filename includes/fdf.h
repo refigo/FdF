@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/23 16:24:37 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/24 10:55:45 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <errno.h>
 # include <stdbool.h>
 # include "libft.h"
-# include "get_next_line.h"
 # include "mlx.h"
 
 /* 
@@ -42,7 +41,7 @@ typedef struct	s_map
 {
 	char	*file;
 	t_list	*stack;
-	int		*arr_z;
+	int		*arr_altitude;
 	int		*arr_color;
 	int		width;
 	int		height;
@@ -50,7 +49,7 @@ typedef struct	s_map
 
 typedef struct	s_point
 {
-	int		z;
+	int		altitude;
 	int		color;
 }				t_point;
 
@@ -60,9 +59,19 @@ typedef struct	s_fdf
 	void	*win;
 	void	*img;
 	t_map	*map;
-
 }				t_fdf;
 
-# include "test_fdf.h"
+// get_map_content.c
+void	get_map_content(t_map *map);
+
+// exit.c
+void	exit_str_code(char *str, int code);
+void	exit_perror(int code_error);
+
+// test_fdf.c
+void	test_line_splitted(char **line_splitted);
+void	test_point_splitted(t_point *point);
+void	test_stack(t_list *stack);
+void	test_map(t_map *map);
 
 #endif

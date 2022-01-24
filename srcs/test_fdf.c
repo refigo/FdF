@@ -21,7 +21,7 @@ void	test_point_splitted(t_point *point)
 {
 	printf("Start --- test_point_splitted\n");
 
-	printf("point->z: [%d]\n", point->z);
+	printf("point->altitude: [%d]\n", point->altitude);
 	printf("point->color(decimal): [%d]\n", point->color);
 	printf("point->color(hexa): [%x]\n", point->color);
 	
@@ -36,7 +36,7 @@ static void	print_stack(void *content)
 	point = (t_point *)content;
 	if (point->color != -1)
 	{
-		printf("point->z: [%d]\n", point->z);
+		printf("point->altitude: [%d]\n", point->altitude);
 		printf("point->color: [%x]\n", point->color);
 	}
 }
