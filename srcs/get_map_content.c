@@ -6,13 +6,13 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:35:09 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/24 10:57:24 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/24 17:04:46 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static bool	transfer_hex_to_denary(int *num, char hex)
+static int	transfer_hex_to_denary(int *num, char hex)
 {
 	const char	*hexa_digits = "0123456789ABCDEF";
 	char		upper_hex;
@@ -46,11 +46,11 @@ static int	atoi_hexa_color(char *hexa_color)
 	return (ret_num);
 }
 
-static bool	add_point_to_stack(t_list **stack, t_point *each_point)
+static int	add_element_to_stack(t_list **stack, t_element *each_element)
 {
 	t_list	*new;
 
-	new = ft_lstnew(each_point);
+	new = ft_lstnew(each_element);
 	if (!new)
 		return (false);
 	ft_lstadd_front(stack, new);
@@ -59,26 +59,26 @@ static bool	add_point_to_stack(t_list **stack, t_point *each_point)
 
 static void	parse_map_line(t_map *map, char **tmp_line_splitted, t_list **stack)
 {
-	t_point	*each_point;
-	char	**tmp_point_splitted;
-	int		i;
+	t_element	*each_element;
+	char		**tmp_element_splitted;
+	int			i;
 
 	i = -1;
 	while (tmp_line_splitted[++i])
 	{
-		tmp_point_splitted = ft_split(tmp_line_splitted[i], ',');
-		if (!tmp_point_splitted)
+		tmp_element_splitted = ft_split(tmp_line_splitted[i], ',');
+		if (!tmp_element_splitted)
 			exit_perror(1);
-		each_point = calloc(1, sizeof(t_point));
-		if (!each_point)
+		each_element = calloc(1, sizeof(t_element));
+		if (!each_element)
 			exit_perror(1);
-		each_point->altitude = ft_atoi(tmp_point_splitted[0]);
-		if (tmp_point_splitted[1])
-			each_point->color = atoi_hexa_color(tmp_point_splitted[1]);
+		each_element->altitude = ft_atoi(tmp_element_splitted[0]);
+		if (tmp_element_splitted[1])
+			each_element->color = atoi_hexa_color(tmp_element_splitted[1]);
 		else
-			each_point->color = -1;
-		add_point_to_stack(stack, each_point);
-		mgo_free_2ptr(tmp_point_splitted);
+			each_element->color = -1;
+		add_element_to_stack(stack, each_element);
+		mgo_free_2ptr(tmp_element_splitted);
 	}
 	if (!(map->width))
 		map->width = i;
@@ -108,6 +108,6 @@ void	get_map_content(t_map *map)
 		(map->height)++;
 	}
 	close(fd_map);
-	map->stack = stack;
+	map->stack_element = stack;
 }
 

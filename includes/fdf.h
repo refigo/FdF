@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/24 12:48:54 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/24 18:14:16 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include <math.h>
 # include <errno.h>
-# include <stdbool.h>
 # include "libft.h"
 # include "mlx.h"
 
@@ -32,6 +31,15 @@
  *	miniLibX library
  */
 
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
+
+typedef enum	e_bool
+{
+	false,
+	true
+}				t_bool;
+
 /*
  * value == altitude -> z
  * horizontal position == axis -> width
@@ -40,19 +48,39 @@
 typedef struct	s_map
 {
 	char	*file;
-	t_list	*stack;
-	int		width;
-	int		height;
+	t_list	*stack_element;
 	int		*arr_altitude;
 	int		*arr_color;
+	int		width;
+	int		height;
 	int		max_altitude;
 	int		min_altitude;
 }				t_map;
 
-typedef struct	s_point
+typedef struct	s_element
 {
 	int		altitude;
 	int		color;
+}				t_element;
+
+// todo: modify
+typedef struct	s_view
+{
+	double	alpha;
+	double	beta;
+	double	gamma;
+	int		x_offset;
+	int		y_offset;
+	float	z_divisor;
+
+}				t_view;
+
+typedef struct	s_point
+{
+	int	x;
+	int	y;
+	int	z;
+	int	color;
 }				t_point;
 
 typedef struct	s_fdf
@@ -60,7 +88,12 @@ typedef struct	s_fdf
 	void	*mlx;
 	void	*win;
 	void	*img;
+	char	*data_addr;
+	int		bpp;
+	int		size_line;
+	int		endian;
 	t_map	*map;
+	t_view	*view;
 }				t_fdf;
 
 // get_map_content.c
@@ -78,5 +111,6 @@ void	test_line_splitted(char **line_splitted);
 void	test_point_splitted(t_point *point);
 void	test_stack(t_list *stack);
 void	test_map(t_map *map);
+void	test_mlx_win(t_fdf *fdf);
 
 #endif

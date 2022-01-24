@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include "color.h"
 
 // test each line content
 void	test_line_splitted(char **line_splitted)
@@ -16,28 +17,28 @@ void	test_line_splitted(char **line_splitted)
 	printf("\nDone --- test_line_splitted\n");
 }
 
-// test each point content 
-void	test_point_splitted(t_point *point)
+// test each element content 
+void	test_element_splitted(t_element *element)
 {
-	printf("Start --- test_point_splitted\n");
+	printf("Start --- test_element_splitted\n");
 
-	printf("point->altitude: [%d]\n", point->altitude);
-	printf("point->color(decimal): [%d]\n", point->color);
-	printf("point->color(hexa): [%x]\n", point->color);
+	printf("element->altitude: [%d]\n", element->altitude);
+	printf("element->color(decimal): [%d]\n", element->color);
+	printf("element->color(hexa): [%x]\n", element->color);
 	
-	printf("Done --- test_point_splitted\n");
+	printf("Done --- test_element_splitted\n");
 }
 
 // test stack
 static void	print_stack(void *content)
 {
-	t_point	*point;
+	t_element	*element;
 
-	point = (t_point *)content;
-	if (point->color != -1)
+	element = (t_element *)content;
+	if (element->color != -1)
 	{
-		printf("point->altitude: [%d]\n", point->altitude);
-		printf("point->color: [%x]\n", point->color);
+		printf("element->altitude: [%d]\n", element->altitude);
+		printf("element->color: [%x]\n", element->color);
 	}
 }
 
@@ -82,12 +83,35 @@ void	test_map(t_map *map)
 	//printf("map->arr_color\n");
 	//test_array(map, map->arr_color);
 
-	printf("map->stack list size: [%d]\n", ft_lstsize(map->stack));
+	printf("map->stack list size: [%d]\n", ft_lstsize(map->stack_element));
 	printf("map->width: [%d]\n", map->width);
 	printf("map->height: [%d]\n", map->height);
 	printf("map->max_altitude: [%d]\n", map->max_altitude);
 	printf("map->min_altitude: [%d]\n", map->min_altitude);
 
 	printf("Done --- test_map\n");
+}
+
+void	test_mlx_win(t_fdf *fdf)
+{
+	int	*img;
+	int	i;
+	int	j;
+
+	printf("test mlx win\n");
+
+	img = (int *)(fdf->data_addr);
+	i = -1;
+	while (++i < WIN_HEIGHT)
+	{
+		j = -1;
+		while (++j < WIN_WIDTH)
+		{
+			if (i % 2 == 1)
+				img[(i * WIN_WIDTH) + j] = CLR_MAIN_SCRN_BG;
+			else
+				img[(i * WIN_WIDTH) + j] = 0;//0xEC4B27;
+		}
+	}
 }
 
