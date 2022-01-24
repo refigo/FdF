@@ -60,7 +60,7 @@ void	test_array(t_map *map, int *array)
 	i = -1;
 	while (++i < map->height)
 	{
-		printf("%d->[", i);
+		printf("%d->[ ", i);
 		j = -1;
 		while (++j < map->width)
 		{
@@ -85,6 +85,8 @@ void	test_map(t_map *map)
 	printf("map->stack list size: [%d]\n", ft_lstsize(map->stack));
 	printf("map->width: [%d]\n", map->width);
 	printf("map->height: [%d]\n", map->height);
+	printf("map->max_altitude: [%d]\n", map->max_altitude);
+	printf("map->min_altitude: [%d]\n", map->min_altitude);
 
 	printf("Done --- test_map\n");
 }

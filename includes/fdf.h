@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/24 11:59:56 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/24 12:48:54 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ typedef struct	s_map
 {
 	char	*file;
 	t_list	*stack;
-	int		*arr_altitude;
-	int		*arr_color;
 	int		width;
 	int		height;
+	int		*arr_altitude;
+	int		*arr_color;
+	int		max_altitude;
+	int		min_altitude;
 }				t_map;
 
 typedef struct	s_point
@@ -63,6 +65,9 @@ typedef struct	s_fdf
 
 // get_map_content.c
 void	get_map_content(t_map *map);
+
+// set_map_content_array.c
+void	set_map_content_array(t_map *map);
 
 // exit.c
 void	exit_str_code(char *str, int code);

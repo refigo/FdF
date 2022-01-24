@@ -6,7 +6,7 @@
 #    By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 13:30:25 by mgo               #+#    #+#              #
-#    Updated: 2022/01/24 10:49:00 by mgo              ###   ########.fr        #
+#    Updated: 2022/01/24 12:22:04 by mgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ LIBMLX		=	-L./lib/minilibx_macos -lmlx -framework OpenGL -framework AppKit
 SRC_PATH	=	./srcs/
 SRC_LIST	=	main.c \
 				get_map_content.c \
+				set_map_content_array.c \
 				exit.c \
 				test_fdf.c
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_LIST))
