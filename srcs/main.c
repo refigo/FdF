@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/25 18:40:00 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/25 18:53:00 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,20 @@ void	draw_line_bresenham(t_fdf *fdf, t_point *start, t_point *dest)
 	}
 }
 
-// what the...
+// project.c
+
+// 30deg x pi/180 = 0.5236rad
+void	set_isometric(int *x_coord, int *y_coord, int z_coord)
+{
+	int	x_prev;
+	int	y_prev;
+
+	x_prev = *x_coord;
+	y_prev = *y_coord;
+	*x_coord = (x_prev - y_prev) * cos(0.5236);
+	*y_coord = (x_prev - y_prev) * sin(0.5236) - z_coord;
+}
+
 t_point	*project_point(t_fdf *fdf, t_point *point)
 {
 	point->x_coord *= fdf->view->zoom;
@@ -102,13 +115,14 @@ t_point	*project_point(t_fdf *fdf, t_point *point)
 	point->z_coord *= fdf->view->zoom;
 	point->x_coord -= (fdf->map->width * fdf->view->zoom) / 2;
 	point->y_coord -= (fdf->map->height * fdf->view->zoom) / 2;
-	//set_view_isometric(&(point->x_coord), &(point->y_coord), &(point->z_coord));
+	set_isometric(&(point->x_coord), &(point->y_coord), point->z_coord);
 	point->x_coord += WIN_WIDTH / 2;
 	point->y_coord += WIN_HEIGHT / 2;
 	//point->y_coord += fdf->map->height * 2 / 5;
 	return (point);
 }
 
+// point.c
 t_point	*set_point(t_fdf *fdf, int x_coord, int y_coord)
 {
 	t_point	*point;
