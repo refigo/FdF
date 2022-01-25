@@ -108,7 +108,7 @@ void	test_mlx_win(t_fdf *fdf)
 		while (++j < WIN_WIDTH)
 		{
 			if (i % 2 == 1)
-				img[(i * WIN_WIDTH) + j] = CLR_MAIN_SCRN_BG;
+				img[(i * WIN_WIDTH) + j] = 0;
 			else
 				img[(i * WIN_WIDTH) + j] = 0;//0xEC4B27;
 		}

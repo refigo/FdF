@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/24 18:14:16 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/25 18:04:41 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct	s_element
 // todo: modify
 typedef struct	s_view
 {
+	int		zoom;
 	double	alpha;
 	double	beta;
 	double	gamma;
@@ -77,9 +78,9 @@ typedef struct	s_view
 
 typedef struct	s_point
 {
-	int	x;
-	int	y;
-	int	z;
+	int	x_coord;
+	int	y_coord;
+	int	z_coord;
 	int	color;
 }				t_point;
 
