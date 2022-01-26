@@ -6,7 +6,7 @@
 #    By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 13:30:25 by mgo               #+#    #+#              #
-#    Updated: 2022/01/24 13:26:47 by mgo              ###   ########.fr        #
+#    Updated: 2022/01/26 11:27:41 by mgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,9 @@ SRC_PATH	=	./srcs/
 SRC_LIST	=	main.c \
 				get_map_content.c \
 				set_map_content_array.c \
+				point_project_view.c \
+				draw.c \
+				draw_line_bresenham.c \
 				exit.c \
 				test_fdf.c
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_LIST))
