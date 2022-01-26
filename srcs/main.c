@@ -6,16 +6,27 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 11:26:33 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/26 17:03:34 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+int	key_press(int keycode, void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = (t_fdf *)param;
+	if (keycode == 53)
+		exit(0);
+	return (0);
+}
+
 // main.c
 void	handle_fdf(t_fdf *fdf)
 {
 	// todo: esc to quit
+	mlx_key_hook(fdf->win, key_press, fdf);
 }
 
 void	draw_fdf(t_fdf *fdf)
@@ -83,7 +94,7 @@ int	main(int argc, char **argv)
 	init_mlx_win(&fdf);
 	init_view(&fdf);
 	draw_fdf(&fdf);
-	//handle_fdf();
+	handle_fdf(&fdf);
 	mlx_loop(fdf.mlx);
 	return (0);
 }
