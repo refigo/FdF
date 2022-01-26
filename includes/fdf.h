@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 14:02:36 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/26 16:36:03 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ void	draw_horizontal_and_vertical_line(t_fdf *fdf, int x_coord, int y_coord);
 
 // draw_line_bresenham.c
 void	draw_line_bresenham(t_fdf *fdf, t_point *start, t_point *dest);
-int		get_pixel_color(t_point *current, t_point *start, t_point *dest);
 void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color);
 
 // point_project_view.c

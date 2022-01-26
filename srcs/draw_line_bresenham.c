@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:23:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 15:55:54 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/26 16:38:21 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,29 @@ void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color)
 		img[(y * WIN_WIDTH) + x] = color;
 }
 
-int	get_pixel_color(t_point *current, t_point *start, t_point *dest)
+double	get_ratio(int start, int dest, int current)
 {
-	return (0);
+	double	ratio;
+
+	if (start == dest)
+		return (1.0);
+	ratio = (double)(current - start) / (dest - start);
+	return (ratio);
+}
+
+int	get_pixel_color(t_pixel current, t_pixel *delta, t_point *start, t_point *dest)
+{
+	double	ratio;
+	int		ret_color;
+	
+	if (start->color == dest->color)
+		return (dest->color);
+	if (delta->x > delta->y)
+		ratio = get_ratio(start->x_coord, dest->x_coord, current.x);
+	else
+		ratio = get_ratio(start->y_coord, dest->y_coord, current.y);
+	ret_color = (int)((ratio) * dest->color + (1 - ratio) * start->color);
+	return (ret_color);
 }
 
 void	determine_direction_one(t_pixel *direction_one, \
@@ -69,8 +89,7 @@ void	draw_low_gradient_line(t_fdf *fdf, t_pixel *delta, \
 	bresen_formula = ((2 * delta->y) - (delta->x));
 	while (current.x != dest->x_coord)
 	{
-		put_pixel(fdf, &current, CLR_TEXT);
-		// todo: get_pixel_color(current, delta, start, dest));
+		put_pixel(fdf, &current, get_pixel_color(current, delta, start, dest));
 		(current.x) += direction_one.x;
 		if (bresen_formula < 0)
 			bresen_formula += (2 * delta->y);
@@ -95,8 +114,7 @@ void	draw_high_gradient_line(t_fdf *fdf, t_pixel *delta, \
 	bresen_formula = ((2 * delta->x) - (delta->y));
 	while (current.y != dest->y_coord)
 	{
-		put_pixel(fdf, &current, CLR_TEXT);
-				//get_pixel_color(current, delta, start, dest));
+		put_pixel(fdf, &current, get_pixel_color(current, delta, start, dest));
 		(current.y) += direction_one.y;
 		if (bresen_formula < 0)
 			bresen_formula += (2 * delta->x);
