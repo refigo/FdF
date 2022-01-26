@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 17:23:29 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 18:28:24 by mgo              ###   ########.fr       */
+/*   Created: 2022/01/26 18:11:10 by mgo               #+#    #+#             */
+/*   Updated: 2022/01/26 18:22:04 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include "fdf.h"
 
-# define CLR_TEXT			0xEAEAEA
-# define COLOR_BACKGROUND	0x222222
-# define CLR_DISCO			0x9A1F6A
-# define CLR_BRICK_RED		0xC2294E
-# define CLR_FLAMINGO		0xEC4B27
-# define CLR_JAFFA			0xEF8633
-# define CLR_SAFFRON		0xF3AF3D
+double	get_ratio(int start, int dest, int current)
+{
+	double	ratio;
 
-#endif
+	if (start == dest)
+		return (1.0);
+	ratio = (double)(current - start) / (dest - start);
+	return (ratio);
+}
+
+int	get_less(int first, int second)
+{
+	if (first < second)
+		return (first);
+	else
+		return (second);
+}

@@ -6,27 +6,17 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 17:03:34 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/26 18:20:37 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	key_press(int keycode, void *param)
-{
-	t_fdf	*fdf;
-
-	fdf = (t_fdf *)param;
-	if (keycode == 53)
-		exit(0);
-	return (0);
-}
-
 // main.c
 void	handle_fdf(t_fdf *fdf)
 {
-	// todo: esc to quit
 	mlx_key_hook(fdf->win, key_press, fdf);
+	mlx_hook(fdf->win, 17, 0, exit_when_closing_win, fdf);
 }
 
 void	draw_fdf(t_fdf *fdf)
@@ -75,6 +65,7 @@ t_map	*parse_map(char *file)
 	map->file = file;
 	get_map_content(map);
 
+	// check list size
 	printf("map->stack list size: [%d]\n", ft_lstsize(map->stack_element));
 
 	set_map_content_array(map);
@@ -98,4 +89,3 @@ int	main(int argc, char **argv)
 	mlx_loop(fdf.mlx);
 	return (0);
 }
-

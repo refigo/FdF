@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:35:09 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/24 17:04:46 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/26 18:22:23 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,3 @@ void	get_map_content(t_map *map)
 	close(fd_map);
 	map->stack_element = stack;
 }
-

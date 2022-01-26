@@ -6,7 +6,7 @@
 #    By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 13:30:25 by mgo               #+#    #+#              #
-#    Updated: 2022/01/26 11:27:41 by mgo              ###   ########.fr        #
+#    Updated: 2022/01/26 18:48:50 by mgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC			=	gcc
 CDEBUG		=	-fsanitize=address -g
 RM			=	rm -rf
 
-INC_LINK	=	-I./includes/
+INC_LINK	=	-I./includes/ -I./lib/libft/includes/ -I./lib/minilibx_macos/
 LIBFT		=	-L./lib/libft -lft
 LIBMLX		=	-L./lib/minilibx_macos -lmlx -framework OpenGL -framework AppKit
 
@@ -24,9 +24,12 @@ SRC_PATH	=	./srcs/
 SRC_LIST	=	main.c \
 				get_map_content.c \
 				set_map_content_array.c \
-				point_project_view.c \
 				draw.c \
 				draw_line_bresenham.c \
+				point_project_view.c \
+				pixel.c \
+				key_control.c \
+				utils.c \
 				exit.c \
 				test_fdf.c
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_LIST))

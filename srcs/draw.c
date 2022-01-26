@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:12:03 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 14:02:57 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/26 18:18:33 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ void	draw_background(t_fdf *fdf)
 			put_pixel(fdf, &pixel, COLOR_BACKGROUND);
 	}
 }
-

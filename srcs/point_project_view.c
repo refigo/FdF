@@ -6,19 +6,11 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:17:27 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 16:35:03 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/26 18:21:41 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	get_less(int num_1, int num_2)
-{
-	if (num_1 < num_2)
-		return (num_1);
-	else
-		return (num_2);
-}
 
 void	init_view(t_fdf *fdf)
 {
@@ -31,8 +23,6 @@ void	init_view(t_fdf *fdf)
 	printf("zoom: [%d]\n", view->zoom);
 	fdf->view = view;
 }
-
-// project.c
 
 // 30deg x pi/180 = 0.5236rad
 void	set_isometric(int *x_coord, int *y_coord, int z_coord)
@@ -60,7 +50,6 @@ t_point	*project_point(t_fdf *fdf, t_point *point)
 	return (point);
 }
 
-// point.c
 t_point	*set_point(t_fdf *fdf, int x_coord, int y_coord)
 {
 	t_point	*point;
@@ -89,4 +78,3 @@ t_point	*set_and_project_point(t_fdf *fdf, int x_coord, int y_coord)
 	projected = project_point(fdf, set_point(fdf, x_coord, y_coord));
 	return (projected);
 }
-

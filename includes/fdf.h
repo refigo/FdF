@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 16:36:03 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/26 18:43:46 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1280
 
-typedef enum	e_bool
+typedef enum e_bool
 {
 	false,
 	true
-}				t_bool;
+}			t_bool;
 
 /*
  * value == altitude -> z
  * horizontal position == axis -> width
  * vertical position == ordinate -> height
  */
-typedef struct	s_map
+typedef struct s_map
 {
 	char	*file;
 	t_list	*stack_element;
@@ -58,14 +58,14 @@ typedef struct	s_map
 	int		min_altitude;
 }				t_map;
 
-typedef struct	s_element
+typedef struct s_element
 {
 	int		altitude;
 	int		color;
 }				t_element;
 
 // todo: modify
-typedef struct	s_view
+typedef struct s_view
 {
 	int		zoom;
 	double	alpha;
@@ -77,7 +77,7 @@ typedef struct	s_view
 
 }				t_view;
 
-typedef struct	s_point
+typedef struct s_point
 {
 	int	x_coord;
 	int	y_coord;
@@ -85,13 +85,13 @@ typedef struct	s_point
 	int	color;
 }				t_point;
 
-typedef struct	s_pixel
+typedef struct s_pixel
 {
 	int	x;
 	int	y;
 }				t_pixel;
 
-typedef struct	s_fdf
+typedef struct s_fdf
 {
 	void	*mlx;
 	void	*win;
@@ -118,7 +118,8 @@ void	set_map_content_array(t_map *map);
 
 // draw.c
 void	draw_background(t_fdf *fdf);
-void	draw_horizontal_and_vertical_line(t_fdf *fdf, int x_coord, int y_coord);
+void	draw_horizontal_and_vertical_line(t_fdf *fdf, \
+			int x_coord, int y_coord);
 
 // draw_line_bresenham.c
 void	draw_line_bresenham(t_fdf *fdf, t_point *start, t_point *dest);
@@ -130,7 +131,21 @@ t_point	*set_point(t_fdf *fdf, int x_coord, int y_coord);
 t_point	*project_point(t_fdf *fdf, t_point *point);
 void	set_isometric(int *x_coord, int *y_coord, int z_coord);
 void	init_view(t_fdf *fdf);
-int		get_less(int num_1, int num_2);
+
+// pixel.c
+void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color);
+int		get_pixel_color(t_pixel current, t_pixel *delta, \
+			t_point *start, t_point *dest);
+void	determine_current_pixel(int *bresen_formula, t_pixel *current, \
+			t_pixel delta, t_pixel direction_one);
+
+// key_control.c
+int		key_press(int keycode, void *param);
+int		exit_when_closing_win(void *param);
+
+// utils.c
+double	get_ratio(int start, int dest, int current);
+int		get_less(int first, int second);
 
 // exit.c
 void	exit_str_code(char *str, int code);
