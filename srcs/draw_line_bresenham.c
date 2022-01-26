@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:23:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 14:10:01 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/26 15:55:54 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,75 +30,96 @@ int	get_pixel_color(t_point *current, t_point *start, t_point *dest)
 	return (0);
 }
 
-void	determine_direction(t_pixel *direction, t_point *start, t_point *dest)
+void	determine_direction_one(t_pixel *direction_one, \
+			t_point *start, t_point *dest)
 {
 	if (start->x_coord < dest->x_coord)
-		direction->x = +1;
+		direction_one->x = +1;
 	else
-		direction->x = -1;
+		direction_one->x = -1;
 	if (start->y_coord < dest->y_coord)
-		direction->y = +1;
+		direction_one->y = +1;
 	else
-		direction->y = -1;
+		direction_one->y = -1;
+}
+
+void	determine_current_pixel(int *bresen_formula, t_pixel *current, \
+			t_pixel delta, t_pixel direction_one)
+{
+	(current->x) += direction_one.x;
+	if (*bresen_formula < 0)
+		*bresen_formula += (2 * delta.y);
+	else
+	{
+		*bresen_formula += ((2 * delta.y) - (2 * delta.x));
+		(current->y) += direction_one.y;
+	}
+}
+
+void	draw_low_gradient_line(t_fdf *fdf, t_pixel *delta, \
+			t_point *start, t_point *dest)
+{
+	t_pixel	current;
+	t_pixel	direction_one;
+	int		bresen_formula;
+
+	current.x = start->x_coord;
+	current.y = start->y_coord;
+	determine_direction_one(&direction_one, start, dest);
+	bresen_formula = ((2 * delta->y) - (delta->x));
+	while (current.x != dest->x_coord)
+	{
+		put_pixel(fdf, &current, CLR_TEXT);
+		// todo: get_pixel_color(current, delta, start, dest));
+		(current.x) += direction_one.x;
+		if (bresen_formula < 0)
+			bresen_formula += (2 * delta->y);
+		else
+		{
+			bresen_formula += ((2 * delta->y) - (2 * delta->x));
+			(current.y) += direction_one.y;
+		}
+	}
+}
+
+void	draw_high_gradient_line(t_fdf *fdf, t_pixel *delta, \
+			t_point *start, t_point *dest)
+{
+	t_pixel	current;
+	t_pixel	direction_one;
+	int		bresen_formula;
+
+	current.x = start->x_coord;
+	current.y = start->y_coord;
+	determine_direction_one(&direction_one, start, dest);
+	bresen_formula = ((2 * delta->x) - (delta->y));
+	while (current.y != dest->y_coord)
+	{
+		put_pixel(fdf, &current, CLR_TEXT);
+				//get_pixel_color(current, delta, start, dest));
+		(current.y) += direction_one.y;
+		if (bresen_formula < 0)
+			bresen_formula += (2 * delta->x);
+		else
+		{
+			bresen_formula += ((2 * delta->x) - (2 * delta->y));
+			(current.x) += direction_one.x;
+		}
+	}
 }
 
 void	draw_line_bresenham(t_fdf *fdf, t_point *start, t_point *dest)
 {
 	t_pixel	delta;
 	t_pixel	current;
-	t_pixel	direction;
+	t_pixel	direction_one;
 	int		formula;
 
 	delta.x = abs(dest->x_coord - start->x_coord);
 	delta.y = abs(dest->y_coord - start->y_coord);
-	current.x = start->x_coord;
-	current.y = start->y_coord;
-	determine_direction(&direction, start, dest);
 	if (delta.x > delta.y)
-	{
-		formula = 2 * delta.y - delta.x;
-		while (current.x != dest->x_coord)
-		{
-			put_pixel(fdf, &current, CLR_TEXT);
-			// todo: get_pixel_color(current, delta, start, dest));
-			if (direction.x > 0)
-				(current.x)++;
-			else
-				(current.x)--;
-			if (formula < 0)
-				formula = formula + 2 * delta.y;
-			else
-			{
-				formula = formula + 2 * delta.y - 2 * delta.x;
-				if (direction.y >0)
-					(current.y)++;
-				else
-					(current.y)--;
-			}
-		}
-	}
+		draw_low_gradient_line(fdf, &delta, start, dest);
 	else
-	{
-		formula = 2 * delta.x - delta.y;
-		while (current.y != dest->y_coord)
-		{
-			put_pixel(fdf, &current, CLR_TEXT);
-					//get_pixel_color(current, delta, start, dest));
-			if (direction.y > 0)
-				(current.y)++;
-			else
-				(current.y)--;
-			if (formula < 0)
-				formula = formula + 2 * delta.x;
-			else
-			{
-				formula = formula + 2 * delta.x - 2 * delta.y;
-				if (direction.x >0)
-					(current.x)++;
-				else
-					(current.x)--;
-			}
-		}
-	}
+		draw_high_gradient_line(fdf, &delta, start, dest);
 }
 
