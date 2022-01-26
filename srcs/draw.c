@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:12:03 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 11:14:53 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/26 14:02:57 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,16 @@ void	draw_horizontal_and_vertical_line(t_fdf *fdf, int x_coord, int y_coord)
 
 void	draw_background(t_fdf *fdf)
 {
-	int	*img;
-	int	i;
-	int	j;
+	int		*img;
+	t_pixel	pixel;
 
 	img = (int *)(fdf->data_addr);
-	i = -1;
-	while (++i < WIN_HEIGHT)
+	pixel.y = -1;
+	while (++(pixel.y) < WIN_HEIGHT)
 	{
-		j = -1;
-		while (++j < WIN_WIDTH)
-			put_pixel(fdf, j, i, COLOR_BACKGROUND);
+		pixel.x = -1;
+		while (++(pixel.x) < WIN_WIDTH)
+			put_pixel(fdf, &pixel, COLOR_BACKGROUND);
 	}
 }
 
