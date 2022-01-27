@@ -4,3 +4,7 @@
 *.o
 *.out
 *.a
+
+*.swp
+fdf
+
