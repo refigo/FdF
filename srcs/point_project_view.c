@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:17:27 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 18:21:41 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/28 16:57:04 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,19 @@
 void	init_view(t_fdf *fdf)
 {
 	t_view	*view;
+	int		max_altitude;
+	int		min_altitude;
+	int		total_length;
 
+	max_altitude = fdf->map->max_altitude;
+	min_altitude = fdf->map->min_altitude;
 	view = calloc(1, sizeof(t_view));
 	// todo: isometric projection
 	view->zoom = get_less((WIN_WIDTH / fdf->map->width / 2), \
 			(WIN_HEIGHT / fdf->map->height / 2));
+	total_length = ((max_altitude - min_altitude) * view->zoom);
+	if (total_length > WIN_HEIGHT)
+		view->zoom = total_length / WIN_HEIGHT * 2;
 	printf("zoom: [%d]\n", view->zoom);
 	fdf->view = view;
 }

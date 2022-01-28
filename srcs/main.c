@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/27 16:08:21 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/28 16:56:02 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	handle_fdf(t_fdf *fdf)
 	mlx_hook(fdf->win, 17, 0, exit_when_closing_win, fdf);
 }
 
+// to move draw file
 void	draw_fdf(t_fdf *fdf)
 {
 	int	x_coord;
