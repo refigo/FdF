@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:17:27 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/28 16:57:04 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/29 14:20:31 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	init_view(t_fdf *fdf)
 	int		min_altitude;
 	int		total_length;
 
+	int		diff_abs_maxmin;
+
 	max_altitude = fdf->map->max_altitude;
 	min_altitude = fdf->map->min_altitude;
 	view = calloc(1, sizeof(t_view));
@@ -26,8 +28,13 @@ void	init_view(t_fdf *fdf)
 	view->zoom = get_less((WIN_WIDTH / fdf->map->width / 2), \
 			(WIN_HEIGHT / fdf->map->height / 2));
 	total_length = ((max_altitude - min_altitude) * view->zoom);
-	if (total_length > WIN_HEIGHT)
-		view->zoom = total_length / WIN_HEIGHT * 2;
+	printf("zoom: [%d]\n", view->zoom);
+	printf("total_length: [%d]\n", total_length);
+	printf("WIN_HEIGHT: [%d]\n", WIN_HEIGHT);
+	if (total_length >= WIN_HEIGHT)
+		view->zoom = WIN_HEIGHT / (max_altitude - min_altitude) * 2 / 3;
+	diff_abs_maxmin = (abs(max_altitude) - abs(min_altitude));
+	view->y_offset += diff_abs_maxmin / 3;
 	printf("zoom: [%d]\n", view->zoom);
 	fdf->view = view;
 }
@@ -52,8 +59,9 @@ t_point	*project_point(t_fdf *fdf, t_point *point)
 	point->x_coord -= (fdf->map->width * fdf->view->zoom) / 2;
 	point->y_coord -= (fdf->map->height * fdf->view->zoom) / 2;
 	set_isometric(&(point->x_coord), &(point->y_coord), point->z_coord);
-	point->x_coord += WIN_WIDTH / 2;
-	point->y_coord += WIN_HEIGHT / 2;
+	point->x_coord += WIN_WIDTH / 2 + fdf->view->x_offset * fdf->view->zoom;
+	point->y_coord += WIN_HEIGHT / 2 + fdf->view->y_offset * fdf->view->zoom;
+	point->y_coord += fdf->view->y_offset;
 	//point->y_coord += fdf->map->height * 2 / 5;
 	return (point);
 }

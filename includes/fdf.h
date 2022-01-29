@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 18:43:46 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/29 14:16:35 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
  *	miniLibX library
  */
 
-# define WIN_WIDTH 1280
-# define WIN_HEIGHT 1280
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 
 typedef enum e_bool
 {
