@@ -6,24 +6,11 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:14:09 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 16:27:57 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 16:51:19 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color)
-{
-	int	*img;
-	int	x;
-	int	y;
-
-	img = (int *)(fdf->data_addr);
-	x = pixel->x;
-	y = pixel->y;
-	if ((0 <= x && x < WIN_WIDTH) && (0 <= y && y < WIN_HEIGHT))
-		img[(y * WIN_WIDTH) + x] = color;
-}
 
 int	get_lerp(int start, int dest, double ratio)
 {
@@ -62,4 +49,3 @@ int	get_pixel_color(t_pixel current, t_pixel *delta, \
 	blue = get_lerp_each_rgb((start->color), (dest->color), ratio);
 	return ((red << 16) | (green << 8) | blue);
 }
-

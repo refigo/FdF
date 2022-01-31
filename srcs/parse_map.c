@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_map_content_array.c                            :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 12:20:06 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 18:21:50 by mgo              ###   ########.fr       */
+/*   Created: 2022/01/31 16:42:12 by mgo               #+#    #+#             */
+/*   Updated: 2022/01/31 16:47:54 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_element	*pop_element_from_stack(t_list **stack)
 	return (ret_element);
 }
 
-void	set_map_content_array(t_map *map)
+static void	set_map_content_array(t_map *map)
 {
 	t_element	*tmp_element;
 	int			i;
@@ -52,4 +52,18 @@ void	set_map_content_array(t_map *map)
 		set_max_min_altitude(map, tmp_element->altitude);
 		free(tmp_element);
 	}
+}
+
+t_map	*parse_map(char *file)
+{
+	t_map	*map;
+
+	map = ft_calloc(1, sizeof(t_map));
+	if (!map)
+		exit_perror(1);
+	// todo: check readable(?)
+	map->file = file;
+	set_map_content_in_stack(map);
+	set_map_content_array(map);
+	return (map);
 }

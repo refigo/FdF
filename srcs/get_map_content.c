@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:35:09 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 18:22:23 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 16:47:22 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	parse_map_line(t_map *map, char **tmp_line_splitted, t_list **stack)
 		map->width = i;
 }
 
-void	get_map_content(t_map *map)
+void	set_map_content_in_stack(t_map *map)
 {
 	int		fd_map;
 	char	*tmp_line;

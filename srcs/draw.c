@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:12:03 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 18:18:33 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 16:45:09 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,20 @@ void	draw_background(t_fdf *fdf)
 		while (++(pixel.x) < WIN_WIDTH)
 			put_pixel(fdf, &pixel, COLOR_BACKGROUND);
 	}
+}
+
+void	draw_fdf(t_fdf *fdf)
+{
+	int	x_coord;
+	int	y_coord;
+
+	draw_background(fdf);
+	y_coord = -1;
+	while (++y_coord < (fdf->map->height))
+	{
+		x_coord = -1;
+		while (++x_coord < (fdf->map->width))
+			draw_horizontal_and_vertical_line(fdf, x_coord, y_coord);
+	}
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
 }

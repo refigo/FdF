@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 16:28:58 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 17:03:48 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,31 +117,29 @@ typedef struct s_fdf
 }				t_fdf;
 
 // main.c
-t_map	*parse_map(char *file);
 void	init_mlx_win(t_fdf *fdf);
-void	draw_fdf(t_fdf *fdf);
+void	init_view(t_fdf *fdf);
+
+// parse_map.c
+t_map	*parse_map(char *file);
 
 // get_map_content.c
-void	get_map_content(t_map *map);
-
-// set_map_content_array.c
-void	set_map_content_array(t_map *map);
+void	set_map_content_in_stack(t_map *map);
 
 // draw.c
+void	draw_fdf(t_fdf *fdf);
 void	draw_background(t_fdf *fdf);
 void	draw_horizontal_and_vertical_line(t_fdf *fdf, \
 			int x_coord, int y_coord);
 
 // draw_line_bresenham.c
 void	draw_line_bresenham(t_fdf *fdf, t_point *start, t_point *dest);
-void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color);
 
 // point_project_view.c
 t_point	*set_and_project_point(t_fdf *fdf, int x_coord, int y_coord);
 t_point	*set_point(t_fdf *fdf, int x_coord, int y_coord);
 t_point	*project_point(t_fdf *fdf, t_point *point);
 void	set_isometric(int *x_coord, int *y_coord, int z_coord);
-void	init_view(t_fdf *fdf);
 
 // pixel.c
 void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color);
@@ -157,6 +155,7 @@ int		exit_when_closing_win(void *param);
 // utils.c
 double	get_ratio(int start, int dest, int current);
 int		get_less(int first, int second);
+void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color);
 
 // exit.c
 void	exit_str_code(char *str, int code);

@@ -6,29 +6,37 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 15:43:56 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 16:45:16 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// main.c
-
-// to move draw file
-void	draw_fdf(t_fdf *fdf)
+void	init_view(t_fdf *fdf)
 {
-	int	x_coord;
-	int	y_coord;
+	t_view	*view;
+	int		max_altitude;
+	int		min_altitude;
+	int		total_length;
 
-	draw_background(fdf);
-	y_coord = -1;
-	while (++y_coord < (fdf->map->height))
-	{
-		x_coord = -1;
-		while (++x_coord < (fdf->map->width))
-			draw_horizontal_and_vertical_line(fdf, x_coord, y_coord);
-	}
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
+	int		diff_abs_maxmin;
+
+	max_altitude = fdf->map->max_altitude;
+	min_altitude = fdf->map->min_altitude;
+	view = calloc(1, sizeof(t_view));
+	// todo: isometric projection
+	view->zoom = get_less((WIN_WIDTH / fdf->map->width / 2), \
+			(WIN_HEIGHT / fdf->map->height / 2));
+	total_length = ((max_altitude - min_altitude) * view->zoom);
+	printf("zoom: [%d]\n", view->zoom);
+	printf("total_length: [%d]\n", total_length);
+	printf("WIN_HEIGHT: [%d]\n", WIN_HEIGHT);
+	if (total_length >= WIN_HEIGHT)
+		view->zoom = WIN_HEIGHT / (max_altitude - min_altitude) * 2 / 3;
+	diff_abs_maxmin = (abs(max_altitude) - abs(min_altitude));
+	view->y_offset += diff_abs_maxmin / 3;
+	printf("zoom: [%d]\n", view->zoom);
+	fdf->view = view;
 }
 
 void	init_mlx_win(t_fdf *fdf)
@@ -45,30 +53,6 @@ void	init_mlx_win(t_fdf *fdf)
 		exit_perror(1);
 	fdf->data_addr = mlx_get_data_addr(fdf->img, \
 			&(fdf->bpp), &(fdf->size_line), &(fdf->endian));
-
-	// test mlx win
-	//test_mlx_win(fdf);
-}
-
-t_map	*parse_map(char *file)
-{
-	t_map	*map;
-
-	map = ft_calloc(1, sizeof(t_map));
-	if (!map)
-		exit_perror(1);
-	// todo: check readable
-	map->file = file;
-	get_map_content(map);
-
-	// check list size
-	printf("map->stack list size: [%d]\n", ft_lstsize(map->stack_element));
-
-	set_map_content_array(map);
-
-	// test map
-	test_map(map);
-	return (map);
 }
 
 int	main(int argc, char **argv)

@@ -78,12 +78,14 @@ void	test_map(t_map *map)
 	printf("Start --- test_map\n");
 
 	//test_stack(map->stack);
+	/*
 	printf("map->arr_altitude\n");
 	test_array(map, map->arr_altitude);
+	*/
 	//printf("map->arr_color\n");
 	//test_array(map, map->arr_color);
 
-	printf("map->stack list size: [%d]\n", ft_lstsize(map->stack_element));
+	//printf("map->stack list size: [%d]\n", ft_lstsize(map->stack_element));
 	printf("map->width: [%d]\n", map->width);
 	printf("map->height: [%d]\n", map->height);
 	printf("map->max_altitude: [%d]\n", map->max_altitude);
