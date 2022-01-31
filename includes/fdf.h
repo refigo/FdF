@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 17:38:07 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 18:02:08 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "color.h"
+# include "key_macos.h"
 
 /* 
  *	open, read, write, close
@@ -35,6 +36,7 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 
+/*
 // rotate
 # define KEY_W 13
 # define KEY_A 0
@@ -46,6 +48,7 @@
 # define KEY_LEFT 123
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
+*/
 
 typedef enum e_bool
 {

@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:17:27 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 16:44:16 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 17:56:32 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_point	*project_point(t_fdf *fdf, t_point *point)
 {
 	point->x_coord *= fdf->view->zoom;
 	point->y_coord *= fdf->view->zoom;
-	point->z_coord *= fdf->view->zoom;
+	point->z_coord *= fdf->view->zoom / fdf->view->z_divisor;
 	point->x_coord -= (fdf->map->width * fdf->view->zoom) / 2;
 	point->y_coord -= (fdf->map->height * fdf->view->zoom) / 2;
 	set_isometric(&(point->x_coord), &(point->y_coord), point->z_coord);

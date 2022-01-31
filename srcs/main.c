@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 16:45:16 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 18:04:42 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_view(t_fdf *fdf)
 	diff_abs_maxmin = (abs(max_altitude) - abs(min_altitude));
 	view->y_offset += diff_abs_maxmin / 3;
 	printf("zoom: [%d]\n", view->zoom);
+	view->z_divisor = 1;
 	fdf->view = view;
 }
 
