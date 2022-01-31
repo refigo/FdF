@@ -6,11 +6,24 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:23:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 18:18:47 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 15:25:40 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	determine_current_pixel(int *bresen_formula, t_pixel *current, \
+			t_pixel delta, t_pixel direction_one)
+{
+	(current->x) += direction_one.x;
+	if (*bresen_formula < 0)
+		*bresen_formula += (2 * delta.y);
+	else
+	{
+		*bresen_formula += ((2 * delta.y) - (2 * delta.x));
+		(current->y) += direction_one.y;
+	}
+}
 
 void	determine_direction_one(t_pixel *direction_one, \
 			t_point *start, t_point *dest)

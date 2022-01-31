@@ -115,3 +115,52 @@ void	test_mlx_win(t_fdf *fdf)
 	}
 }
 
+/*
+	In get_pixel_color
+
+	if (start->color != CLR_TEXT || dest->color != CLR_TEXT)
+		test_print_color(start, dest, ratio);
+
+	//ret_color = (int)((ratio) * dest->color + (1 - ratio) * start->color);
+	// if not mask, it's same with above.(?)
+*/
+void	test_print_color(t_point *start, t_point *dest, double ratio)
+{
+	int	red;
+	int	green;
+	int	blue;
+	int	ret;
+
+	printf("---\nnot 0xFF\n");
+	printf("ratio: [%lf]\n", ratio);
+	printf("-- red\n");
+	printf("start->color >> 16: [%d]\n", (start->color >> 16));
+	printf("dest->color >> 16: [%d]\n", (dest->color >> 16));
+	printf("start->color >> 16 & 0xFF: [%d]\n", (start->color >> 16) & 0xFF);
+	printf("dest->color >> 16 & 0xFF: [%d]\n", (dest->color >> 16) & 0xFF);
+
+	printf("--green\n");
+	printf("start->color >> 8: [%d]\n", (start->color >> 8));
+	printf("dest->color >> 8: [%d]\n", (dest->color >> 8));
+	printf("start->color >> 8 & 0xFF: [%d]\n", (start->color >> 8) & 0xFF);
+	printf("dest->color >> 8 & 0xFF: [%d]\n", (dest->color >> 8) & 0xFF);
+
+	printf("--blue\n");
+	printf("start->color >> 4: [%d]\n", (start->color >> 4));
+	printf("dest->color >> 4: [%d]\n", (dest->color >> 4));
+	printf("start->color >> 4 & 0xFF: [%d]\n", (start->color >> 4) & 0xFF);
+	printf("dest->color >> 4 & 0xFF: [%d]\n", (dest->color >> 4) & 0xFF);
+
+	red = get_lerp((start->color >> 16) & 0xFF, (dest->color >> 16) & 0xFF, ratio);
+	green = get_lerp((start->color >> 8) & 0xFF, (dest->color >> 8) & 0xFF, ratio);
+	blue = get_lerp((start->color) & 0xFF, (dest->color) & 0xFF, ratio);
+	ret = ((red << 16) | (green << 8) | blue);
+
+	printf("red: [%d]\n", red);
+	printf("green: [%d]\n", green);
+	printf("blue: [%d]\n", blue);
+	printf("return: [%d]\n", ret);
+}
+
+
+

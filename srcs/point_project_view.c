@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:17:27 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/29 14:20:31 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 15:12:21 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_point	*project_point(t_fdf *fdf, t_point *point)
 	set_isometric(&(point->x_coord), &(point->y_coord), point->z_coord);
 	point->x_coord += WIN_WIDTH / 2 + fdf->view->x_offset * fdf->view->zoom;
 	point->y_coord += WIN_HEIGHT / 2 + fdf->view->y_offset * fdf->view->zoom;
+	// to modify
 	point->y_coord += fdf->view->y_offset;
 	//point->y_coord += fdf->map->height * 2 / 5;
 	return (point);

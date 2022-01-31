@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/29 14:16:35 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 16:28:58 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
+
+// rotate
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+
+// zoom, translate
+# define KEY_UP 126
+# define KEY_LEF 123
+# define KEY_DOWN 125
+# define KEY_RIGHT 124
 
 typedef enum e_bool
 {
@@ -108,7 +120,6 @@ typedef struct s_fdf
 t_map	*parse_map(char *file);
 void	init_mlx_win(t_fdf *fdf);
 void	draw_fdf(t_fdf *fdf);
-void	handle_fdf(t_fdf *fdf);
 
 // get_map_content.c
 void	get_map_content(t_map *map);
@@ -136,10 +147,10 @@ void	init_view(t_fdf *fdf);
 void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color);
 int		get_pixel_color(t_pixel current, t_pixel *delta, \
 			t_point *start, t_point *dest);
-void	determine_current_pixel(int *bresen_formula, t_pixel *current, \
-			t_pixel delta, t_pixel direction_one);
+int		get_lerp(int start, int dest, double ratio);
 
 // key_control.c
+void	handle_fdf(t_fdf *fdf);
 int		key_press(int keycode, void *param);
 int		exit_when_closing_win(void *param);
 
