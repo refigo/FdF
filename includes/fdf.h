@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 17:03:48 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 17:38:07 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 
 // zoom, translate
 # define KEY_UP 126
-# define KEY_LEF 123
+# define KEY_LEFT 123
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
 

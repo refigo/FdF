@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:07:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 17:15:36 by mgo              ###   ########.fr       */
+/*   Updated: 2022/01/31 17:39:26 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ void	handle_zoom(int key, t_fdf *fdf)
 	draw_fdf(fdf);
 }
 
+void	handle_offset(int key, t_fdf *fdf)
+{
+	if (key == KEY_UP)
+		(fdf->view->y_offset)++;
+	else if (key == KEY_DOWN)
+		(fdf->view->y_offset)--;
+	else if (key == KEY_LEFT)
+		(fdf->view->x_offset)++;
+	else if (key == KEY_RIGHT)
+		(fdf->view->x_offset)--;
+	draw_fdf(fdf);
+}
+
 int	key_press(int key, void *param)
 {
 	t_fdf	*fdf;
@@ -34,6 +47,9 @@ int	key_press(int key, void *param)
 		exit(0);
 	if (key == KEY_W || key == KEY_S)
 		handle_zoom(key, fdf);
+	if (key == KEY_UP || key == KEY_LEFT \
+			|| key == KEY_DOWN || key == KEY_RIGHT)
+		handle_offset(key, fdf);
 		
 	return (0);
 }
