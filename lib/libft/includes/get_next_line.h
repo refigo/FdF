@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 11:18:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/07 12:07:30 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/01 12:38:52 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ typedef struct s_gnl
 	void	*next;
 }				t_gnl;
 
+// get_next_line.c
 int				get_next_line(int fd, char **line);
 
+// get_next_line_utils.c
 char			*gnl_strjoin_with_free(char *s1, char *s2);
 int				gnl_strndup(char **dest, const char *str, ssize_t len);
 char			*gnl_strchr(const char *s, int c);
