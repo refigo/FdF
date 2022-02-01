@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 18:02:08 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/01 11:56:20 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ typedef enum e_bool
 	true
 }			t_bool;
 
+typedef enum e_projection
+{
+	ISOMETRIC,
+	PARALLEL
+}			t_projection;
+
 /*
  * value == altitude -> z
  * horizontal position == axis -> width
@@ -82,14 +88,14 @@ typedef struct s_element
 // todo: modify
 typedef struct s_view
 {
-	int		zoom;
-	double	alpha;
-	double	beta;
-	double	gamma;
-	int		x_offset;
-	int		y_offset;
-	float	z_divisor;
-
+	int				zoom;
+	double			alpha;
+	double			beta;
+	double			gamma;
+	t_projection	projection;
+	int				x_offset;
+	int				y_offset;
+	int				z_divisor; // modify
 }				t_view;
 
 typedef struct s_point
@@ -143,6 +149,12 @@ t_point	*set_and_project_point(t_fdf *fdf, int x_coord, int y_coord);
 t_point	*set_point(t_fdf *fdf, int x_coord, int y_coord);
 t_point	*project_point(t_fdf *fdf, t_point *point);
 void	set_isometric(int *x_coord, int *y_coord, int z_coord);
+
+// rotate.c
+void	set_isometric(int *x_coord, int *y_coord, int z_coord);
+void	rotate_x_axis(int *y_coord, int *z_coord, double alpha);
+void	rotate_y_axis(int *x_coord, int *z_coord, double beta);
+void	rotate_z_axis(int *x_coord, int *y_coord, double gamma);
 
 // pixel.c
 void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color);

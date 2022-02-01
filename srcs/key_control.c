@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:07:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 18:05:54 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/01 12:09:42 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,17 @@ void	handle_z_divisor(int key, t_fdf *fdf)
 	draw_fdf(fdf);
 }
 
+void	handle_rotate(int key, t_fdf *fdf)
+{
+	if (key == KEY_X)
+		(fdf->view->alpha) += 0.1;
+	else if (key == KEY_Y)
+		(fdf->view->beta) += 0.1;
+	else if (key == KEY_Z)
+		(fdf->view->gamma) += 0.1;
+	draw_fdf(fdf);
+}
+
 int	key_press(int key, void *param)
 {
 	t_fdf	*fdf;
@@ -63,6 +74,8 @@ int	key_press(int key, void *param)
 		handle_offset(key, fdf);
 	if (key == KEY_L || key == KEY_H)
 		handle_z_divisor(key, fdf);
+	if (key == KEY_X || key == KEY_Y || key == KEY_Z)
+		handle_rotate(key, fdf);
 		
 	return (0);
 }

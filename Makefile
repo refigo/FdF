@@ -6,7 +6,7 @@
 #    By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 13:30:25 by mgo               #+#    #+#              #
-#    Updated: 2022/01/31 17:03:30 by mgo              ###   ########.fr        #
+#    Updated: 2022/02/01 11:57:24 by mgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC_LIST	=	main.c \
 				draw.c \
 				draw_line_bresenham.c \
 				point_project.c \
+				rotate.c \
 				pixel.c \
 				key_control.c \
 				utils.c \
