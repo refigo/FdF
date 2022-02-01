@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/01 11:56:20 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/01 12:52:08 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,9 +163,16 @@ int		get_pixel_color(t_pixel current, t_pixel *delta, \
 int		get_lerp(int start, int dest, double ratio);
 
 // key_control.c
-void	handle_fdf(t_fdf *fdf);
+void	control_fdf(t_fdf *fdf);
 int		key_press(int keycode, void *param);
 int		exit_when_closing_win(void *param);
+
+// handle_view.c
+void	handle_zoom(int key, t_fdf *fdf);
+void	handle_offset(int key, t_fdf *fdf);
+void	handle_z_divisor(int key, t_fdf *fdf);
+void	handle_rotate(int key, t_fdf *fdf);
+void	handle_projection(int key, t_fdf *fdf);
 
 // utils.c
 double	get_ratio(int start, int dest, int current);

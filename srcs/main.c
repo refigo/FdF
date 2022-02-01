@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 18:04:42 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/01 12:52:27 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char **argv)
 	init_mlx_win(&fdf);
 	init_view(&fdf);
 	draw_fdf(&fdf);
-	handle_fdf(&fdf);
+	control_fdf(&fdf);
 	mlx_loop(fdf.mlx);
 	return (0);
 }

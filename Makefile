@@ -6,7 +6,7 @@
 #    By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 13:30:25 by mgo               #+#    #+#              #
-#    Updated: 2022/02/01 11:57:24 by mgo              ###   ########.fr        #
+#    Updated: 2022/02/01 12:55:04 by mgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC_LIST	=	main.c \
 				rotate.c \
 				pixel.c \
 				key_control.c \
+				handle_view.c \
 				utils.c \
 				exit.c \
 				test_fdf.c
