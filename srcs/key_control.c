@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:07:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/01 12:09:42 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/01 12:13:38 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,18 @@ void	handle_rotate(int key, t_fdf *fdf)
 	draw_fdf(fdf);
 }
 
+void	handle_projection(int key, t_fdf *fdf)
+{
+	(fdf->view->alpha) = 0;
+	(fdf->view->beta) = 0;
+	(fdf->view->gamma) = 0;
+	if (key == KEY_I)
+		(fdf->view->projection) = ISOMETRIC;
+	else if (key == KEY_P)
+		(fdf->view->projection) = PARALLEL;
+	draw_fdf(fdf);
+}
+
 int	key_press(int key, void *param)
 {
 	t_fdf	*fdf;
@@ -76,7 +88,8 @@ int	key_press(int key, void *param)
 		handle_z_divisor(key, fdf);
 	if (key == KEY_X || key == KEY_Y || key == KEY_Z)
 		handle_rotate(key, fdf);
-		
+	if (key == KEY_I || key == KEY_P)
+		handle_projection(key, fdf);
 	return (0);
 }
 
