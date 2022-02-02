@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 14:46:11 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 15:42:37 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,25 @@
 void	init_view(t_fdf *fdf)
 {
 	t_view	*view;
+
 	int		max_altitude;
 	int		min_altitude;
 	int		total_length;
-
 	int		diff_abs_maxmin;
+
+	view = calloc(1, sizeof(t_view));
+	view->zoom = get_less((WIN_WIDTH / fdf->map->width / 2), \
+			(WIN_HEIGHT / fdf->map->height / 2));
 
 	max_altitude = fdf->map->max_altitude;
 	min_altitude = fdf->map->min_altitude;
-	view = calloc(1, sizeof(t_view));
-	// todo: isometric projection
-	view->zoom = get_less((WIN_WIDTH / fdf->map->width / 2), \
-			(WIN_HEIGHT / fdf->map->height / 2));
 	total_length = ((max_altitude - min_altitude) * view->zoom);
-	printf("zoom: [%d]\n", view->zoom);
-	printf("total_length: [%d]\n", total_length);
-	printf("WIN_HEIGHT: [%d]\n", WIN_HEIGHT);
 	if (total_length >= WIN_HEIGHT)
 		view->zoom = WIN_HEIGHT / (max_altitude - min_altitude) * 2 / 3;
 	diff_abs_maxmin = (abs(max_altitude) - abs(min_altitude));
-	view->y_offset += diff_abs_maxmin / 3;
-	printf("zoom: [%d]\n", view->zoom);
-	view->z_divisor = 1;
+	//view->y_offset += diff_abs_maxmin / 3;
+
+	view->altitude_divisor = 1;
 	fdf->view = view;
 }
 

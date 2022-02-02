@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:07:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/01 12:53:32 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 15:44:19 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	key_press(int key, void *param)
 			|| key == KEY_DOWN || key == KEY_RIGHT)
 		handle_offset(key, fdf);
 	if (key == KEY_L || key == KEY_H)
-		handle_z_divisor(key, fdf);
+		handle_altitude_divisor(key, fdf);
 	if (key == KEY_X || key == KEY_Y || key == KEY_Z)
 		handle_rotate(key, fdf);
 	if (key == KEY_I || key == KEY_P)

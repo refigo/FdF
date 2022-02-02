@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:17:27 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 14:38:37 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 15:43:02 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_point	*project_point(t_fdf *fdf, t_point *point)
 {
 	point->x_coord *= fdf->view->zoom;
 	point->y_coord *= fdf->view->zoom;
-	point->z_coord *= fdf->view->zoom / fdf->view->z_divisor;
+	point->z_coord *= fdf->view->zoom / fdf->view->altitude_divisor;
 	point->x_coord -= (fdf->map->width * fdf->view->zoom) / 2;
 	point->y_coord -= (fdf->map->height * fdf->view->zoom) / 2;
 	rotate_x_axis(&(point->y_coord), &(point->z_coord), fdf->view->alpha);

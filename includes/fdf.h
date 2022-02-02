@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 14:36:14 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 15:43:52 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_view
 	t_projection	projection;
 	int				x_offset;
 	int				y_offset;
-	int				z_divisor; // modify
+	double			altitude_divisor;
 }				t_view;
 
 typedef struct s_point
@@ -170,7 +170,7 @@ int		exit_when_closing_win(void *param);
 // handle_view.c
 void	handle_zoom(int key, t_fdf *fdf);
 void	handle_offset(int key, t_fdf *fdf);
-void	handle_z_divisor(int key, t_fdf *fdf);
+void	handle_altitude_divisor(int key, t_fdf *fdf);
 void	handle_rotate(int key, t_fdf *fdf);
 void	handle_projection(int key, t_fdf *fdf);
 

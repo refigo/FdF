@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 12:50:11 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/01 12:52:39 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 15:43:55 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	handle_offset(int key, t_fdf *fdf)
 	draw_fdf(fdf);
 }
 
-void	handle_z_divisor(int key, t_fdf *fdf)
+void	handle_altitude_divisor(int key, t_fdf *fdf)
 {
 	if (key == KEY_L)
-		(fdf->view->z_divisor)++;
+		(fdf->view->altitude_divisor)++;
 	else if (key == KEY_H)
-		(fdf->view->z_divisor)--;
-	if (fdf->view->z_divisor == 0)
-		fdf->view->z_divisor = 1;
+		(fdf->view->altitude_divisor)--;
+	if (fdf->view->altitude_divisor == 0)
+		fdf->view->altitude_divisor = 1;
 	draw_fdf(fdf);
 }
 
