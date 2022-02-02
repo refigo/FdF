@@ -6,7 +6,7 @@
 #    By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 13:30:25 by mgo               #+#    #+#              #
-#    Updated: 2022/02/02 15:44:42 by mgo              ###   ########.fr        #
+#    Updated: 2022/02/02 16:52:39 by mgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,7 @@ SRC_LIST	=	main.c \
 				control.c \
 				handle_view.c \
 				utils.c \
-				exit.c \
-				test_fdf.c
+				exit.c
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_LIST))
 
 OBJ_PATH	=	./objects/

@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:42:12 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 14:37:23 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 17:58:34 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ t_map	*parse_map(char *file)
 	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
 		exit_perror();
-	// todo: check readable(?)
 	map->file = file;
 	set_map_content_in_stack(map);
 	set_map_content_array(map);

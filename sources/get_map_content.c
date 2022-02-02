@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:35:09 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 14:38:11 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 17:34:04 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	set_map_content_in_stack(t_map *map)
 
 	stack = NULL;
 	fd_map = open(map->file, O_RDONLY);
-	if (fd_map == -1)	// todo?: OPEN_MAX and minus
+	if (fd_map == -1)
 		exit_perror();
 	tmp_line = NULL;
 	while (get_next_line(fd_map, &tmp_line) != -1 && tmp_line)
@@ -104,7 +104,7 @@ void	set_map_content_in_stack(t_map *map)
 		parse_map_line(map, tmp_line_splitted, &stack);
 		mgo_free_2ptr(tmp_line_splitted);
 		free(tmp_line);
-		tmp_line = NULL; // because of abort... but why???
+		tmp_line = NULL;
 		(map->height)++;
 	}
 	close(fd_map);

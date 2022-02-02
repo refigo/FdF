@@ -6,13 +6,13 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:07:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 16:33:01 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 17:59:50 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	key_press(int key, void *param)
+static int	key_press(int key, void *param)
 {
 	t_fdf	*fdf;
 
@@ -33,7 +33,7 @@ int	key_press(int key, void *param)
 	return (0);
 }
 
-int	exit_when_closing_win(void *param)
+static int	exit_when_closing_win(void *param)
 {
 	(void)param;
 	exit(0);
@@ -41,6 +41,9 @@ int	exit_when_closing_win(void *param)
 
 void	control_fdf(t_fdf *fdf)
 {
+	int	win_button_esc;
+
+	win_button_esc = 17;
 	mlx_hook(fdf->win, KEYPRESS, 0, key_press, fdf);
-	mlx_hook(fdf->win, 17, 0, exit_when_closing_win, fdf);
+	mlx_hook(fdf->win, win_button_esc, 0, exit_when_closing_win, fdf);
 }

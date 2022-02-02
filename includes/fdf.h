@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 16:18:07 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 17:59:46 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
 # include <fcntl.h>
 # include <math.h>
 # include <errno.h>
-# include "libft.h"
-# include "mlx.h"
+
 # include "color.h"
 # include "key_macos.h"
+
+# include "libft.h"
+# include "mlx.h"
 
 /* 
  *	open, read, write, close
@@ -36,20 +38,6 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 
-/*
-// rotate
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
-
-// zoom, translate
-# define KEY_UP 126
-# define KEY_LEFT 123
-# define KEY_DOWN 125
-# define KEY_RIGHT 124
-*/
-
 typedef enum e_bool
 {
 	false,
@@ -62,11 +50,6 @@ typedef enum e_projection
 	PARALLEL
 }			t_projection;
 
-/*
- * value == altitude -> z
- * horizontal position == axis -> width
- * vertical position == ordinate -> height
- */
 typedef struct s_map
 {
 	char	*file;
@@ -155,10 +138,8 @@ int		get_pixel_color(t_pixel current, t_pixel *delta, \
 			t_point *start, t_point *dest);
 int		get_lerp(int start, int dest, double ratio);
 
-// key_control.c
+// control.c
 void	control_fdf(t_fdf *fdf);
-int		key_press(int keycode, void *param);
-int		exit_when_closing_win(void *param);
 
 // handle_view.c
 void	handle_zoom(int key, t_fdf *fdf);
@@ -175,12 +156,5 @@ void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color);
 // exit.c
 void	exit_error_2msg(char *msg1, char *msg2);
 void	exit_perror(void);
-
-// test_fdf.c
-void	test_line_splitted(char **line_splitted);
-void	test_point_splitted(t_point *point);
-void	test_stack(t_list *stack);
-void	test_map(t_map *map);
-void	test_mlx_win(t_fdf *fdf);
 
 #endif
