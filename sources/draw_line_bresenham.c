@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:23:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 15:25:40 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 13:57:22 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,6 @@ void	draw_high_gradient_line(t_fdf *fdf, t_pixel *delta, \
 void	draw_line_bresenham(t_fdf *fdf, t_point *start, t_point *dest)
 {
 	t_pixel	delta;
-	t_pixel	current;
-	t_pixel	direction_one;
-	int		formula;
 
 	delta.x = abs(dest->x_coord - start->x_coord);
 	delta.y = abs(dest->y_coord - start->y_coord);
