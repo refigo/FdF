@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/01 12:52:08 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 14:36:14 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,8 +180,8 @@ int		get_less(int first, int second);
 void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color);
 
 // exit.c
-void	exit_str_code(char *str, int code);
-void	exit_perror(int code_error);
+void	exit_error_2msg(char *msg1, char *msg2);
+void	exit_perror(void);
 
 // test_fdf.c
 void	test_line_splitted(char **line_splitted);

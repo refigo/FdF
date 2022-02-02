@@ -6,25 +6,24 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:36:19 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/26 18:18:58 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 14:44:40 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	exit_str_code(char *str, int code)
+void	exit_error_2msg(char *msg1, char *msg2)
 {
-	if (str)
-		ft_putstr_fd(str, 1);
-	exit(code);
-	// todo: using errno
+	ft_putstr_fd("FdF error: ", 2);
+	if (msg1)
+		ft_putstr_fd(msg1, 2);
+	if (msg2)
+		ft_putstr_fd(msg2, 2);
+	exit(1);
 }
 
-void	exit_perror(int code_error)
+void	exit_perror(void)
 {
-	perror(0);
-	if (!code_error)
-		exit(1);
-	else
-		exit(code_error);
+	perror("FdF error");
+	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:17:27 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/01 12:08:29 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 14:38:37 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_point	*set_point(t_fdf *fdf, int x_coord, int y_coord)
 	map = fdf->map;
 	point = calloc(1, sizeof(t_point));
 	if (!point)
-		exit_perror(1);
+		exit_perror();
 	point->x_coord = x_coord;
 	point->y_coord = y_coord;
 	index_in_array = (y_coord * (map->width)) + x_coord;

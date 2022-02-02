@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/01 12:52:27 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 14:46:11 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,15 @@ void	init_view(t_fdf *fdf)
 
 void	init_mlx_win(t_fdf *fdf)
 {
-	// todo: exit with str
 	fdf->mlx = mlx_init();
 	if (!(fdf->mlx))
-		exit_perror(1);
+		exit_error_2msg("mlx_init error\n", NULL);
 	fdf->win = mlx_new_window(fdf->mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
 	if (!(fdf->win))
-		exit_perror(1);
+		exit_error_2msg("mlx_new_window error\n", NULL);
 	fdf->img = mlx_new_image(fdf->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!(fdf->img))
-		exit_perror(1);
+		exit_error_2msg("mlx_new_image error\n", NULL);
 	fdf->data_addr = mlx_get_data_addr(fdf->img, \
 			&(fdf->bpp), &(fdf->size_line), &(fdf->endian));
 }
@@ -61,7 +60,8 @@ int	main(int argc, char **argv)
 	t_fdf	fdf;
 
 	if (argc != 2)
-		exit_str_code("argument number is wrong!\n", 1);
+		exit_error_2msg("argument number is wrong.\n", \
+				"Please input one fdf file.\n");
 	fdf.map = parse_map(argv[1]);
 	init_mlx_win(&fdf);
 	init_view(&fdf);
