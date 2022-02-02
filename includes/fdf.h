@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 17:59:46 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 18:02:07 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,11 +132,9 @@ void	rotate_x_axis(int *y_coord, int *z_coord, double alpha);
 void	rotate_y_axis(int *x_coord, int *z_coord, double beta);
 void	rotate_z_axis(int *x_coord, int *y_coord, double gamma);
 
-// pixel.c
-void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color);
+// color.c
 int		get_pixel_color(t_pixel current, t_pixel *delta, \
 			t_point *start, t_point *dest);
-int		get_lerp(int start, int dest, double ratio);
 
 // control.c
 void	control_fdf(t_fdf *fdf);
@@ -149,9 +147,9 @@ void	handle_rotate(int key, t_fdf *fdf);
 void	handle_projection(int key, t_fdf *fdf);
 
 // utils.c
-double	get_ratio(int start, int dest, int current);
-int		get_less(int first, int second);
 void	put_pixel(t_fdf *fdf, t_pixel *pixel, int color);
+int		get_less(int first, int second);
+double	get_ratio(int start, int dest, int current);
 
 // exit.c
 void	exit_error_2msg(char *msg1, char *msg2);

@@ -6,13 +6,13 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:14:09 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 16:51:19 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 18:02:02 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	get_lerp(int start, int dest, double ratio)
+static int	get_lerp(int start, int dest, double ratio)
 {
 	int	ret;
 
@@ -20,7 +20,7 @@ int	get_lerp(int start, int dest, double ratio)
 	return (ret);
 }
 
-int	get_lerp_each_rgb(int start, int dest, double ratio)
+static int	get_lerp_each_rgb(int start, int dest, double ratio)
 {
 	int	ret;
 	int	mask_1byte;
