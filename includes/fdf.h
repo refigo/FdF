@@ -6,18 +6,16 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 18:02:07 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 18:09:04 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
 # include <math.h>
+# include <fcntl.h>
+# include <stdio.h>
 # include <errno.h>
 
 # include "color.h"
@@ -25,15 +23,6 @@
 
 # include "libft.h"
 # include "mlx.h"
-
-/* 
- *	open, read, write, close
- *	malloc, free
- *	perror, strerror
- *	exit
- *	math library
- *	miniLibX library
- */
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
@@ -68,7 +57,6 @@ typedef struct s_element
 	int		color;
 }				t_element;
 
-// todo: modify
 typedef struct s_view
 {
 	int				zoom;
@@ -120,11 +108,8 @@ void	draw_fdf(t_fdf *fdf);
 // draw_line_bresenham.c
 void	draw_line_bresenham(t_fdf *fdf, t_point *start, t_point *dest);
 
-// point_project_view.c
+// project.c
 t_point	*set_and_project_point(t_fdf *fdf, int x_coord, int y_coord);
-t_point	*set_point(t_fdf *fdf, int x_coord, int y_coord);
-t_point	*project_point(t_fdf *fdf, t_point *point);
-void	set_isometric(int *x_coord, int *y_coord, int z_coord);
 
 // rotate.c
 void	set_isometric(int *x_coord, int *y_coord, int z_coord);

@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 16:40:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 16:31:46 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 18:10:24 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@
 # define KEY_PAD_ENTER		76
 # define KEY_PAD_DOT		65
 
-// Mouse button codes
+// mouse button codes
 # define MB1				1
 # define MB2				3
 # define MB3				2

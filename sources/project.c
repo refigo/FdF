@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_project_view.c                               :+:      :+:    :+:   */
+/*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 11:17:27 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 17:32:35 by mgo              ###   ########.fr       */
+/*   Created: 2022/02/02 18:10:37 by mgo               #+#    #+#             */
+/*   Updated: 2022/02/02 18:10:43 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	rotate_projection(t_fdf *fdf, t_point *point)
+static void	rotate_projection(t_fdf *fdf, t_point *point)
 {
 	rotate_x_axis(&(point->y_coord), &(point->z_coord), fdf->view->alpha);
 	rotate_y_axis(&(point->x_coord), &(point->z_coord), fdf->view->beta);
@@ -21,7 +21,7 @@ void	rotate_projection(t_fdf *fdf, t_point *point)
 		set_isometric(&(point->x_coord), &(point->y_coord), point->z_coord);
 }
 
-t_point	*project_point(t_fdf *fdf, t_point *point)
+static t_point	*project_point(t_fdf *fdf, t_point *point)
 {
 	int	diff_abs_max_min_alt;
 
@@ -39,7 +39,7 @@ t_point	*project_point(t_fdf *fdf, t_point *point)
 	return (point);
 }
 
-t_point	*set_point(t_fdf *fdf, int x_coord, int y_coord)
+static t_point	*set_point(t_fdf *fdf, int x_coord, int y_coord)
 {
 	t_point	*point;
 	t_map	*map;
