@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:36:41 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 15:43:52 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 16:18:07 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,6 @@ typedef struct s_fdf
 	t_view	*view;
 }				t_fdf;
 
-// main.c
-void	init_mlx_win(t_fdf *fdf);
-void	init_view(t_fdf *fdf);
-
 // parse_map.c
 t_map	*parse_map(char *file);
 
@@ -137,9 +133,6 @@ void	set_map_content_in_stack(t_map *map);
 
 // draw.c
 void	draw_fdf(t_fdf *fdf);
-void	draw_background(t_fdf *fdf);
-void	draw_horizontal_and_vertical_line(t_fdf *fdf, \
-			int x_coord, int y_coord);
 
 // draw_line_bresenham.c
 void	draw_line_bresenham(t_fdf *fdf, t_point *start, t_point *dest);

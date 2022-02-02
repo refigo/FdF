@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:07:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 15:44:19 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 16:33:01 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	key_press(int key, void *param)
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
-	if (key == 53)
+	if (key == KEY_ESCAPE)
 		exit(0);
 	if (key == KEY_W || key == KEY_S)
 		handle_zoom(key, fdf);

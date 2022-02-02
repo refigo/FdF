@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 16:40:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/27 16:40:18 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 16:31:46 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 
 # define KEYPRESS 2
 # define KEYRELEASE 3
-
-/*
-** # define KEYPRESSMASK (1L<<0)
-** # define KEYRELEASEMASK (1L<<1)
-*/
 
 # define KEY_ESCAPE			53
 # define KEY_F1 			122

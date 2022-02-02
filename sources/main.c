@@ -6,38 +6,41 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 15:42:37 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 16:08:45 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	init_view(t_fdf *fdf)
+static void	adjust_view_according_altitude(t_view *view, t_map *map)
 {
-	t_view	*view;
-
 	int		max_altitude;
 	int		min_altitude;
-	int		total_length;
-	int		diff_abs_maxmin;
+	int		total_altitude_zoomed;
+	int		diff_abs_max_min;
+
+	max_altitude = map->max_altitude;
+	min_altitude = map->min_altitude;
+	total_altitude_zoomed = ((max_altitude - min_altitude) * view->zoom);
+	if (total_altitude_zoomed >= WIN_HEIGHT)
+		view->zoom = WIN_HEIGHT / (max_altitude - min_altitude) * 2 / 3;
+	diff_abs_max_min = (abs(max_altitude) - abs(min_altitude));
+	view->y_offset += diff_abs_max_min / 3;
+}
+
+static void	init_view(t_fdf *fdf)
+{
+	t_view	*view;
 
 	view = calloc(1, sizeof(t_view));
 	view->zoom = get_less((WIN_WIDTH / fdf->map->width / 2), \
 			(WIN_HEIGHT / fdf->map->height / 2));
-
-	max_altitude = fdf->map->max_altitude;
-	min_altitude = fdf->map->min_altitude;
-	total_length = ((max_altitude - min_altitude) * view->zoom);
-	if (total_length >= WIN_HEIGHT)
-		view->zoom = WIN_HEIGHT / (max_altitude - min_altitude) * 2 / 3;
-	diff_abs_maxmin = (abs(max_altitude) - abs(min_altitude));
-	//view->y_offset += diff_abs_maxmin / 3;
-
+	adjust_view_according_altitude(view, fdf->map);
 	view->altitude_divisor = 1;
 	fdf->view = view;
 }
 
-void	init_mlx_win(t_fdf *fdf)
+static void	init_mlx_win(t_fdf *fdf)
 {
 	fdf->mlx = mlx_init();
 	if (!(fdf->mlx))

@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:12:03 by mgo               #+#    #+#             */
-/*   Updated: 2022/01/31 16:45:09 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 16:21:32 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,16 @@ static void	draw_vertical_line(t_fdf *fdf, int x_coord, int y_coord)
 	draw_line_bresenham(fdf, projected, projected_next);
 }
 
-void	draw_horizontal_and_vertical_line(t_fdf *fdf, int x_coord, int y_coord)
+static void	draw_horizontal_and_vertical_line(t_fdf *fdf, \
+		int x_coord, int y_coord)
 {
-	if (x_coord < fdf->map->width - 1)
+	if (x_coord < (fdf->map->width) - 1)
 		draw_horizontal_line(fdf, x_coord, y_coord);
-	if (y_coord < fdf->map->height - 1)
+	if (y_coord < (fdf->map->height) - 1)
 		draw_vertical_line(fdf, x_coord, y_coord);
 }
 
-void	draw_background(t_fdf *fdf)
+static void	draw_background(t_fdf *fdf)
 {
 	int		*img;
 	t_pixel	pixel;

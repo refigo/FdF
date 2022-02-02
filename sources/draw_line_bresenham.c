@@ -6,26 +6,13 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:23:05 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 13:57:22 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/02 16:29:30 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	determine_current_pixel(int *bresen_formula, t_pixel *current, \
-			t_pixel delta, t_pixel direction_one)
-{
-	(current->x) += direction_one.x;
-	if (*bresen_formula < 0)
-		*bresen_formula += (2 * delta.y);
-	else
-	{
-		*bresen_formula += ((2 * delta.y) - (2 * delta.x));
-		(current->y) += direction_one.y;
-	}
-}
-
-void	determine_direction_one(t_pixel *direction_one, \
+static void	determine_direction_one(t_pixel *direction_one, \
 			t_point *start, t_point *dest)
 {
 	if (start->x_coord < dest->x_coord)
@@ -38,7 +25,7 @@ void	determine_direction_one(t_pixel *direction_one, \
 		direction_one->y = -1;
 }
 
-void	draw_low_gradient_line(t_fdf *fdf, t_pixel *delta, \
+static void	draw_low_gradient_line(t_fdf *fdf, t_pixel *delta, \
 			t_point *start, t_point *dest)
 {
 	t_pixel	current;
@@ -63,7 +50,7 @@ void	draw_low_gradient_line(t_fdf *fdf, t_pixel *delta, \
 	}
 }
 
-void	draw_high_gradient_line(t_fdf *fdf, t_pixel *delta, \
+static void	draw_high_gradient_line(t_fdf *fdf, t_pixel *delta, \
 			t_point *start, t_point *dest)
 {
 	t_pixel	current;
