@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/03 14:44:22 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/03 15:17:42 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 	t_fdf	fdf;
 
 	if (argc != 2)
-		exit_error_2msg("argument number is wrong.\n", \
+		exit_error_2msg("Argument number is wrong.\n", \
 				"Please input one fdf file.\n");
 	fdf.map = parse_map(argv[1]);
 	init_mlx_win(&fdf);
