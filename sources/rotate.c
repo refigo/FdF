@@ -6,22 +6,22 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:35:01 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/01 11:58:38 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/03 13:46:12 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// 30deg x pi/180 = 0.5236rad
+// PI/6 == 30degree == 0.523599rad
 void	set_isometric(int *x_coord, int *y_coord, int z_coord)
 {
-	int	x_prev;
-	int	y_prev;
+	int		x_prev;
+	int		y_prev;
 
 	x_prev = *x_coord;
 	y_prev = *y_coord;
-	*x_coord = (x_prev - y_prev) * cos(0.5236);
-	*y_coord = (x_prev + y_prev) * sin(0.5236) - z_coord;
+	*x_coord = (x_prev - y_prev) * cos(0.523599);
+	*y_coord = (x_prev + y_prev) * sin(0.523599) - z_coord;
 }
 
 void	rotate_x_axis(int *y_coord, int *z_coord, double alpha)
