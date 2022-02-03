@@ -6,7 +6,7 @@
 #    By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 13:30:25 by mgo               #+#    #+#              #
-#    Updated: 2022/02/02 18:09:09 by mgo              ###   ########.fr        #
+#    Updated: 2022/02/03 13:59:30 by mgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBMLX		=	-L./lib/minilibx_macos -lmlx -framework OpenGL -framework AppKit
 SRC_PATH	=	./sources/
 SRC_LIST	=	main.c \
 				parse_map.c \
-				get_map_content.c \
+				set_map_content.c \
 				draw.c \
 				draw_line_bresenham.c \
 				project.c \
