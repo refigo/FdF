@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:00:08 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/03 14:00:14 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/03 14:01:12 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ static void	parse_map_line(t_map *map, char **tmp_line_splitted, t_list **stack)
 
 void	set_map_content_in_stack(t_map *map)
 {
+	t_list	*stack;
 	int		fd_map;
 	char	*tmp_line;
 	char	**tmp_line_splitted;
-	t_list	*stack;
 
 	stack = NULL;
 	fd_map = open(map->file, O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:42:12 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 17:58:34 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/03 14:46:09 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	set_max_min_altitude(t_map *map, int element_altitude)
 {
-	if (element_altitude > map->max_altitude)
-		map->max_altitude = element_altitude;
-	if (element_altitude < map->min_altitude)
-		map->min_altitude = element_altitude;
+	if (element_altitude > (map->max_altitude))
+		(map->max_altitude) = element_altitude;
+	if (element_altitude < (map->min_altitude))
+		(map->min_altitude) = element_altitude;
 }
 
 static t_element	*pop_element_from_stack(t_list **stack)

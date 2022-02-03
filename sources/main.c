@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:21:17 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 17:07:52 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/03 14:44:22 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	init_view(t_fdf *fdf)
 
 	view = calloc(1, sizeof(t_view));
 	view->zoom = get_less((WIN_WIDTH / fdf->map->width / 2), \
-			(WIN_HEIGHT / fdf->map->height / 2));
+						(WIN_HEIGHT / fdf->map->height / 2));
 	adjust_zoom_according_altitude(view, fdf->map);
 	view->altitude_divisor = 1;
 	fdf->view = view;

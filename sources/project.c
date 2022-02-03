@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 18:10:37 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/02 18:10:43 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/03 14:54:26 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ static t_point	*set_point(t_fdf *fdf, int x_coord, int y_coord)
 t_point	*set_and_project_point(t_fdf *fdf, int x_coord, int y_coord)
 {
 	t_point	*point;
-	t_point	*projected;
+	t_point	*ret_projected;
 
 	point = set_point(fdf, x_coord, y_coord);
-	projected = project_point(fdf, point);
-	return (projected);
+	ret_projected = project_point(fdf, point);
+	return (ret_projected);
 }
