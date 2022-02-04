@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:42:12 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/03 14:46:09 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/04 12:34:38 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static void	set_map_content_array(t_map *map)
 	t_element	*tmp_element;
 	int			i;
 
-	map->arr_altitude = calloc((map->width * map->height), sizeof(int));
+	map->arr_altitude = ft_calloc((map->width * map->height), sizeof(int));
 	if (!(map->arr_altitude))
 		exit_perror();
-	map->arr_color = calloc((map->width * map->height), sizeof(int));
+	map->arr_color = ft_calloc((map->width * map->height), sizeof(int));
 	if (!(map->arr_color))
 		exit_perror();
 	i = (map->width * map->height);

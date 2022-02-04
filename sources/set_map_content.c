@@ -6,7 +6,7 @@
 /*   By: mgo <mgo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:00:08 by mgo               #+#    #+#             */
-/*   Updated: 2022/02/03 14:01:12 by mgo              ###   ########.fr       */
+/*   Updated: 2022/02/04 12:35:16 by mgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	parse_map_line(t_map *map, char **tmp_line_splitted, t_list **stack)
 		tmp_element_splitted = ft_split(tmp_line_splitted[i], ',');
 		if (!tmp_element_splitted)
 			exit_perror();
-		each_element = calloc(1, sizeof(t_element));
+		each_element = ft_calloc(1, sizeof(t_element));
 		if (!each_element)
 			exit_perror();
 		each_element->altitude = ft_atoi(tmp_element_splitted[0]);
